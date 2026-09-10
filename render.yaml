@@ -2,8 +2,10 @@ services:
   - type: web
     name: foodfusion
     runtime: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "cd 'Food Ordering' && gunicorn foodOrderSystem.wsgi:application"
+
     envVars:
       - key: PYTHON_VERSION
         value: "3.12"
@@ -14,14 +16,5 @@ services:
       - key: DJANGO_SECRET_KEY
         generateValue: true
 
-      - key: DATABASE_URL
-        fromDatabase:
-          name: foodfusion-db
-          property: connectionString
-
       - key: DJANGO_ALLOWED_HOSTS
         value: ".onrender.com"
-
-databases:
-  - name: foodfusion-db
-    plan: free
