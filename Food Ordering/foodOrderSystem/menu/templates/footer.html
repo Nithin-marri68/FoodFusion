@@ -1,73 +1,111 @@
-{%load static%}
-<meta charset="UTF-8">
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary py-3 text-muted">
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="text-center text-muted">
-            <h4> Standing on your expectation, Always!!!</h4>
-        </div>
-        <div class="container text-center text-md-start mt-3 align-content-center">
-            <!-- Grid row -->
-            <div class="row mt-3">
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-  
-                    <img class="img-fluid" src={%static 'logo-transparent.png'%}>
-                </div>
-                <!-- Grid column -->
+<footer class="foodfusion-footer">
+    <div class="foodfusion-footer-container">
 
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 align-content-center  mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Useful links
-                    </h6>
-                    <p>
-                        <a href="/login" class="text-reset">Login</a>
-                    </p>
-                    <p>
-                        <a href="/register" class="text-reset">Register</a>
-                    </p>
-                    <p>
-                        <a href="/forgetPassword" class="text-reset">Forget Password</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-
-                
-                <div class="col-md-4 col-lg-3 col-xl-3 align-content-center mb-md-0 mb-4">
-
-                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                    <p>
-                        Mail id : habibifoods@gmail.com
-
-                    </p>
-                    <p>
-                        Mobile : +91 4085012459
-                    </p>
-                    
-                </div>
-
-                <div class="col-md-4 col-lg-3 col-xl-3 align-content-center mb-md-0 mb-4" style="margin: 10px 0 0 30px;">
-
-                    <h6 class="text-uppercase fw-bold mb-4">Feedback</h6>
-                    <p>
-                        <a href="/feedback" class="text-reset">Rate Us here</a>
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href={%url 'menu'%}> Habibi Foods </a>
-        <br>
-        <h6 class="text-center"> Made with <span>💖</span></h6>
+```
+    <div class="foodfusion-footer-brand">
+        <h3>🍴 FoodFusion</h3>
+        <p>
+            A full-stack Django food ordering platform for discovering
+            food, managing carts, placing orders, and sharing reviews.
+        </p>
     </div>
-    
+
+    <div class="foodfusion-footer-links">
+        <h4>Quick Links</h4>
+        <a href="{% url 'menu' %}">Browse Menu</a>
+        <a href="{% url 'cart' %}">My Cart</a>
+        <a href="{% url 'order_history' %}">My Orders</a>
+        <a href="{% url 'feedback_form' %}">Feedback</a>
+        <a href="{% url 'index' %}">Contact</a>
+    </div>
+
+    <div class="foodfusion-footer-contact">
+        <h4>FoodFusion</h4>
+        <p>Online Food Ordering System</p>
+        <p>Customer • Restaurant • Admin</p>
+    </div>
+
+</div>
+
+<div class="foodfusion-footer-bottom">
+    <p>
+        © {% now "Y" %} FoodFusion. All rights reserved.
+    </p>
+    <p>
+        Developed and maintained by <strong>Nithin Marri</strong>
+    </p>
+</div>
+```
 
 </footer>
+
+<style>
+    .foodfusion-footer {
+        margin-top: 50px;
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    .foodfusion-footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 45px 24px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 45px;
+    }
+
+    .foodfusion-footer h3 {
+        margin: 0 0 12px;
+        font-size: 24px;
+    }
+
+    .foodfusion-footer h4 {
+        margin: 0 0 15px;
+        font-size: 17px;
+    }
+
+    .foodfusion-footer p {
+        margin: 7px 0;
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+
+    .foodfusion-footer-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .foodfusion-footer-links a {
+        color: #d1d5db;
+        text-decoration: none;
+        margin: 5px 0;
+        transition: color 0.2s ease;
+    }
+
+    .foodfusion-footer-links a:hover {
+        color: #fb923c;
+    }
+
+    .foodfusion-footer-bottom {
+        border-top: 1px solid #374151;
+        padding: 18px 24px;
+        text-align: center;
+    }
+
+    .foodfusion-footer-bottom p {
+        margin: 4px 0;
+        font-size: 14px;
+    }
+
+    .foodfusion-footer-bottom strong {
+        color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+        .foodfusion-footer-container {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+    }
+</style>
