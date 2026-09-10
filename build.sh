@@ -2,7 +2,7 @@
 
 set -o errexit
 
-cd "Food Ordering"
+cd "Food Ordering/foodOrderSystem"
 
 python manage.py collectstatic --no-input
 
