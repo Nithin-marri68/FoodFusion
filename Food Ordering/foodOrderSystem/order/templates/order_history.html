@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FoodFusion | My Orders</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 8%;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .order {
+            background: white;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .empty {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>FoodFusion</h1>
+    <p>My Orders</p>
+</header>
+
+<div class="container">
+
+    {% if orders %}
+
+        {% for order in orders %}
+
+        <div class="order">
+
+            <div class="order-header">
+
+                <div>
+                    <strong>
+                        Order #{{ order.id }}
+                    </strong>
+
+                    <p>
+                        {{ order.created_at|date:"d M Y, h:i A" }}
+                    </p>
+                </div>
+
+                <div class="status">
+                    {{ order.get_status_display }}
+                </div>
+
+            </div>
+
+            {% for item in order.items.all %}
+
+            <div class="item">
+
+                <span>
+                    {{ item.food_name }} × {{ item.quantity }}
+                </span>
+
+                <strong>
+                    ₹{{ item.subtotal }}
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+            <div class="total">
+                Total: ₹{{ order.total_amount }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+
+            <h2>No orders yet</h2>
+
+            <p>
+                Your FoodFusion order history is empty.
+            </p>
+
+            <a
+                href="{% url 'menu' %}"
+                class="btn"
+            >
+                Browse Menu
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

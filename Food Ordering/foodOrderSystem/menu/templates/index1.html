@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FoodFusion | Menu</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #fff7f8;
+            color: #1f2937;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-size: 1.7rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #e11d48;
+        }
+
+        .brand span {
+            color: #111827;
+        }
+
+        .nav-link-custom {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
+        .nav-link-custom:hover {
+            color: #e11d48;
+        }
+
+        .cart-btn {
+            background: #e11d48;
+            color: white;
+            border-radius: 10px;
+            padding: 9px 16px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cart-btn:hover {
+            background: #be123c;
+            color: white;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #e11d48,
+                #fb7185
+            );
+
+            color: white;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-wrapper {
+            max-width: 700px;
+            margin: -25px auto 35px;
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            padding: 12px;
+        }
+
+        .search-box input:focus {
+            box-shadow: none;
+        }
+
+        .search-button {
+            background: #e11d48;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-weight: 600;
+        }
+
+        .search-button:hover {
+            background: #be123c;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #111827;
+        }
+
+
+        /* =========================
+           RESTAURANT CARDS
+        ========================= */
+
+        .restaurant-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            height: 100%;
+        }
+
+        .restaurant-video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .restaurant-content {
+            padding: 18px;
+        }
+
+        .restaurant-content h5 {
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .restaurant-content p {
+            color: #6b7280;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .view-menu-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #e11d48;
+            border: 1px solid #e11d48;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .view-menu-btn:hover {
+            background: #e11d48;
+            color: white;
+        }
+
+
+        /* =========================
+           FOOD CARDS
+        ========================= */
+
+        .food-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            height: 100%;
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .food-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .food-content {
+            padding: 18px;
+        }
+
+        .food-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-name {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .food-price {
+            color: #e11d48;
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           RATING
+        ========================= */
+
+        .rating-display {
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+        }
+
+        .rating-stars {
+            color: #f59e0b;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .rating-number {
+            font-weight: 700;
+            color: #374151;
+            margin-left: 5px;
+        }
+
+        .review-count {
+            color: #6b7280;
+            margin-left: 4px;
+        }
+
+        .no-rating {
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .add-cart-btn {
+            background: #e11d48;
+            border: none;
+            color: white;
+            border-radius: 9px;
+            padding: 8px 13px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .add-cart-btn:hover {
+            background: #be123c;
+        }
+
+        .review-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: #e11d48;
+            border: 1px solid #e11d48;
+            border-radius: 9px;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .review-btn:hover {
+            background: #e11d48;
+            color: white;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .empty-state h4 {
+            font-weight: 700;
+        }
+
+        .empty-state p {
+            color: #6b7280;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111827;
+            color: #d1d5db;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        footer strong {
+            color: #fb7185;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-link-custom {
+                display: none;
+            }
+
+            .food-image {
+                height: 190px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav class="navbar">
+
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <a
+            href="{% url 'Home' %}"
+            class="brand"
+        >
+            Food<span>Fusion</span>
+        </a>
+
+
+        <div class="d-flex align-items-center">
+
+            <a
+                href="{% url 'Home' %}"
+                class="nav-link-custom"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'cart' %}"
+                class="cart-btn ms-3"
+            >
+                🛒 Cart
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        Discover Delicious Food
+    </h1>
+
+    <p>
+        Explore restaurants and order your favourite meals with FoodFusion.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-wrapper">
+
+    <form method="get">
+
+        <div class="search-box d-flex">
+
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="Search for food..."
+                value="{{ search_query }}"
+            >
+
+            {% if selected_restaurant %}
+
+                <input
+                    type="hidden"
+                    name="restaurant"
+                    value="{{ selected_restaurant }}"
+                >
+
+            {% endif %}
+
+
+            <button
+                type="submit"
+                class="search-button"
+            >
+                Search
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<main class="main-container">
+
+
+    <!-- =========================
+         MESSAGES
+    ========================= -->
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div
+                class="alert alert-success alert-dismissible fade show"
+                role="alert"
+            >
+
+                {{ message }}
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                ></button>
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <!-- =========================
+         RESTAURANTS
+    ========================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Explore Restaurants
+        </h2>
+
+
+        <div class="row g-4">
+
+            {% for restaurant in restaurant_list %}
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="restaurant-card">
+
+
+                        {% if forloop.counter == 1 %}
+
+                            <video
+                                class="restaurant-video"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                            >
+
+                                <source
+                                    src="{% static 'video1.mp4' %}"
+                                    type="video/mp4"
+                                >
+
+                            </video>
+
+
+                        {% elif forloop.counter == 2 %}
+
+                            <video
+                                class="restaurant-video"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                            >
+
+                                <source
+                                    src="{% static 'video2.mp4' %}"
+                                    type="video/mp4"
+                                >
+
+                            </video>
+
+
+                        {% else %}
+
+                            <video
+                                class="restaurant-video"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                            >
+
+                                <source
+                                    src="{% static 'video3.mp4' %}"
+                                    type="video/mp4"
+                                >
+
+                            </video>
+
+                        {% endif %}
+
+
+                        <div class="restaurant-content">
+
+                            <h5>
+                                {{ restaurant.restaurantName }}
+                            </h5>
+
+
+                            <p>
+                                {{ restaurant.address|truncatechars:80 }}
+                            </p>
+
+
+                            <a
+                                href="?restaurant={{ restaurant.restaurantName|urlencode }}#food-menu"
+                                class="view-menu-btn"
+                            >
+                                View Menu
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            {% empty %}
+
+                <div class="col-12">
+
+                    <div class="empty-state">
+
+                        <h4>
+                            No restaurants available
+                        </h4>
+
+                        <p>
+                            Restaurants will appear here once they register.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOD MENU
+    ========================= -->
+
+    <section id="food-menu">
+
+        <h2 class="section-title">
+
+            {% if selected_restaurant %}
+
+                {{ selected_restaurant }} Menu
+
+            {% else %}
+
+                Popular Food Items
+
+            {% endif %}
+
+        </h2>
+
+
+        {% if foodItems %}
+
+            <div class="row g-4">
+
+
+                {% for food in foodItems %}
+
+                    <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                        <div class="food-card">
+
+
+                            <!-- Food image -->
+
+                            {% if food.image %}
+
+                                <img
+                                    src="{{ food.image.url }}"
+                                    alt="{{ food.name }}"
+                                    class="food-image"
+                                >
+
+                            {% else %}
+
+                                <div
+                                    class="food-image d-flex align-items-center justify-content-center bg-light"
+                                >
+
+                                    <span class="text-muted">
+                                        No image
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div class="food-content">
+
+
+                                <!-- Food name -->
+
+                                <div class="food-name">
+                                    {{ food.name }}
+                                </div>
+
+
+                                <!-- Restaurant -->
+
+                                <div class="restaurant-name">
+
+                                    {{ food.restaurantName }}
+
+                                </div>
+
+
+                                <!-- Rating -->
+
+                                <div class="rating-display">
+
+                                    {% if food.review_count > 0 %}
+
+                                        <span class="rating-stars">
+
+                                            {% if food.average_rating >= 1 %}★{% else %}☆{% endif %}
+                                            {% if food.average_rating >= 2 %}★{% else %}☆{% endif %}
+                                            {% if food.average_rating >= 3 %}★{% else %}☆{% endif %}
+                                            {% if food.average_rating >= 4 %}★{% else %}☆{% endif %}
+                                            {% if food.average_rating >= 5 %}★{% else %}☆{% endif %}
+
+                                        </span>
+
+
+                                        <span class="rating-number">
+
+                                            {{ food.average_rating|floatformat:1 }}
+
+                                        </span>
+
+
+                                        <span class="review-count">
+
+                                            ({{ food.review_count }} review{{ food.review_count|pluralize }})
+
+                                        </span>
+
+
+                                    {% else %}
+
+                                        <span class="no-rating">
+
+                                            No ratings yet
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <!-- Price and cart -->
+
+                                <div class="d-flex justify-content-between align-items-center">
+
+                                    <span class="food-price">
+
+                                        ₹{{ food.price }}
+
+                                    </span>
+
+
+                                    <form method="post">
+
+                                        {% csrf_token %}
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="{{ food.id }}"
+                                        >
+
+
+                                        <button
+                                            type="submit"
+                                            class="add-cart-btn"
+                                        >
+                                            Add to Cart
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+
+                                <!-- Review button -->
+
+                                <a
+                                    href="{% url 'add_review' food.id %}"
+                                    class="review-btn"
+                                >
+                                    ⭐ Review & Rate
+                                </a>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <h4>
+                    No food items found
+                </h4>
+
+
+                {% if search_query %}
+
+                    <p>
+
+                        No food items matched
+                        "<strong>{{ search_query }}</strong>".
+
+                    </p>
+
+                {% else %}
+
+                    <p>
+
+                        Food items will appear here once restaurants add them.
+
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p class="mb-2">
+
+        © 2026
+        <strong>FoodFusion</strong>.
+        All rights reserved.
+
+    </p>
+
+
+    <p class="mb-0">
+
+        Developed and maintained by
+        <strong>Nithin Marri</strong>
+
+    </p>
+
+</footer>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+</body>
+
+</html>

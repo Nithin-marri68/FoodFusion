@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FoodFusion | Order Confirmed</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 750px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .success {
+            font-size: 60px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .order-info {
+            margin-top: 30px;
+            text-align: left;
+            background: #f8f9fb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .order-info p {
+            margin: 10px 0;
+        }
+
+        .items {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: #111827;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="success">✓</div>
+
+        <h1>Order Placed Successfully!</h1>
+
+        <p>
+            Thank you for ordering from FoodFusion.
+        </p>
+
+        <div class="order-info">
+
+            <p>
+                <strong>Order ID:</strong>
+                #{{ order.id }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ order.get_status_display }}
+            </p>
+
+            <p>
+                <strong>Total:</strong>
+                ₹{{ order.total_amount }}
+            </p>
+
+            <p>
+                <strong>Delivery Address:</strong>
+                {{ order.delivery_address }}
+            </p>
+
+        </div>
+
+        <div class="items">
+
+            <h2>Ordered Items</h2>
+
+            {% for item in order.items.all %}
+
+            <div class="item">
+
+                <span>
+                    {{ item.food_name }} × {{ item.quantity }}
+                </span>
+
+                <strong>
+                    ₹{{ item.subtotal }}
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="buttons">
+
+            <a
+                href="{% url 'order_history' %}"
+                class="btn"
+            >
+                View My Orders
+            </a>
+
+            <a
+                href="{% url 'menu' %}"
+                class="btn"
+            >
+                Continue Shopping
+            </a>
+
+        </div>
+
+        <p style="margin-top: 35px; color: #777;">
+            FoodFusion · Developed and maintained by Nithin Marri
+        </p>
+
+    </div>
+
+</body>
+</html>
